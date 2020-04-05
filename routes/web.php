@@ -19,6 +19,9 @@ Route::get('/', function () {
 
 Route::prefix('admin')->namespace('Admin')->group(function(){
 
+    Route::any('profiles/search', 'ACL\ProfileController@search')->name('profiles.search');
+    Route::resource('profiles', 'ACL\ProfileController');
+
     Route::delete('plans/{url}/details/{idDetail}', 'DetailPlanController@destroy')->name('details.plan.destroy');
     Route::get('plans/{url}/details/{idDetail}', 'DetailPlanController@show')->name('details.plan.show');
     Route::put('plans/{url}/details/{idDetail}', 'DetailPlanController@update')->name('details.plan.update');
