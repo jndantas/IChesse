@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Tenant;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TenantController extends Controller
 {
