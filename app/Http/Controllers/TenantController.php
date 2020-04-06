@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Site;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Plan;
+use App\Models\Tenant;
 use Illuminate\Http\Request;
 
-class SiteController extends Controller
+class TenantController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,20 +14,7 @@ class SiteController extends Controller
      */
     public function index()
     {
-        $plans = Plan::with('details')->orderBy('price', 'ASC')->get();
-
-        return view('site.pages.home.index', compact('plans'));
-    }
-
-    public function plan($url)
-    {
-        if (!$plan = Plan::where('url', $url)->first()) {
-            return redirect()->back();
-        }
-
-        session()->put('plan', $plan);
-
-        return redirect()->route('register');
+        //
     }
 
     /**
@@ -55,10 +41,10 @@ class SiteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Tenant  $tenant
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Tenant $tenant)
     {
         //
     }
@@ -66,10 +52,10 @@ class SiteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Tenant  $tenant
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Tenant $tenant)
     {
         //
     }
@@ -78,10 +64,10 @@ class SiteController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Tenant  $tenant
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Tenant $tenant)
     {
         //
     }
@@ -89,10 +75,10 @@ class SiteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Tenant  $tenant
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tenant $tenant)
     {
         //
     }
