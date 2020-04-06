@@ -13,11 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Site\SiteController@index')->name('site.home');
 
-Route::prefix('admin')->namespace('Admin')->group(function(){
+Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function(){
 
     Route::get('plans/{id}/profile/{idProfile}/detach', 'ACL\PlanProfileController@detachProfilePlan')->name('plans.profile.detach');
     Route::post('plans/{id}/profiles', 'ACL\PlanProfileController@attachProfilesPlan')->name('plans.profiles.attach');
@@ -38,11 +36,11 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
     Route::resource('profiles', 'ACL\ProfileController');
 
     Route::delete('plans/{url}/details/{idDetail}', 'DetailPlanController@destroy')->name('details.plan.destroy');
+    Route::get('plans/{url}/details/create', 'DetailPlanController@create')->name('details.plan.create');
     Route::get('plans/{url}/details/{idDetail}', 'DetailPlanController@show')->name('details.plan.show');
     Route::put('plans/{url}/details/{idDetail}', 'DetailPlanController@update')->name('details.plan.update');
     Route::get('plans/{url}/details/{idDetail}/edit', 'DetailPlanController@edit')->name('details.plan.edit');
     Route::post('plans/{url}/details', 'DetailPlanController@store')->name('details.plan.store');
-    Route::get('plans/{url}/details/create', 'DetailPlanController@create')->name('details.plan.create');
     Route::get('plans/{url}/details', 'DetailPlanController@index')->name('details.plan.index');
 
     Route::get('plans/create', 'PlanController@create')->name('plans.create');
@@ -55,3 +53,7 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
     Route::get('plans', 'PlanController@index')->name('plans.index');
     Route::get('/', 'PlanController@index')->name('admin.index');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
