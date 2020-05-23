@@ -167,7 +167,7 @@ return [
 
     'use_route_url' => false,
 
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'admin/home',
 
     'logout_url' => 'logout',
 
@@ -225,6 +225,12 @@ return [
             'url'  => 'admin/profiles',
             'icon' => 'fas fa-address-book',
             'can'  =>  'profiles',
+        ],
+        [
+            'text' => 'Cargos',
+            'url'  => 'admin/roles',
+            'icon' => 'fas fa-address-card',
+            'can'  =>  'roles',
         ],
         [
             'text' => 'Permissões',
