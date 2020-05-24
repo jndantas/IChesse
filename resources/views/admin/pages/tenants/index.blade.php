@@ -22,11 +22,17 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <form action="{{ route('tenants.search') }}" method="POST" class="form form-inline">
-                @csrf
-                <input type="text" name="filter" placeholder="Filtrar:" class="form-control" value="{{ $filters['filter'] ?? '' }}">
-                <button type="submit" class="btn btn-dark">Filtrar</button>
-            </form>
+            <div class="card-tools">
+                <form action="{{ route('tenants.search') }}" method="POST" class="form form-inline">
+                    @csrf
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="filter" placeholder="Filtrar:" class="form-control" value="{{ $filters['filter'] ?? '' }}">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="card-body">
             <table class="table table-condensed">
