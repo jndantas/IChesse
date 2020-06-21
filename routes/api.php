@@ -1,4 +1,19 @@
 <?php
 
-Route::get('/tenants/{uuid}', 'Api\TenantApiController@show');
-Route::get('/tenants', 'Api\TenantApiController@index');
+Route::group([
+
+'prefix' => 'v1',
+    'namespace' => 'Api'
+], function () {
+    Route::get('/tenants/{uuid}', 'TenantController@show');
+    Route::get('/tenants', 'TenantController@index');
+
+    Route::get('/categories/{url}', 'CategoryController@show');
+    Route::get('/categories', 'CategoryController@categoriesByTenant');
+
+    Route::get('/tables/{identify}', 'TableController@show');
+    Route::get('/tables', 'TableController@tablesByTenant');
+
+    Route::get('/products/{flag}', 'ProductController@show');
+    Route::get('/products', 'ProductController@productsByTenant');
+});

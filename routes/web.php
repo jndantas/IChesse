@@ -16,13 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function(){
 
-    Route::get('/categories/{url}', 'Api\CategoryApiController@show');
-    Route::get('/categories', 'Api\CategoryApiController@categoriesByTenant');
-
-
-    Route::get('/tables/{identify}', 'Api\TableApiController@show');
-    Route::get('/tables', 'Api\TableApiController@tablesByTenant');
-
     Route::get('users/{id}/role/{idRole}/detach', 'ACL\RoleUserController@detachRoleUser')->name('users.role.detach');
     Route::post('users/{id}/roles', 'ACL\RoleUserController@attachRolesUser')->name('users.roles.attach');
     Route::any('users/{id}/roles/create', 'ACL\RoleUserController@rolesAvailable')->name('users.roles.available');

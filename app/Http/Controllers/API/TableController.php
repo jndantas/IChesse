@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\TenantRequest;
+use App\Http\Resources\TableResource;
+use App\Services\TableService;
 use Illuminate\Http\Request;
 
 class TableController extends Controller
