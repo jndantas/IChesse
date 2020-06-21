@@ -7,6 +7,7 @@ Route::group([
 ], function () {
     Route::get('/auth/me', 'API\Auth\AuthClientController@me');
     Route::post('/auth/logout', 'API\Auth\AuthClientController@logout');
+    Route::get('/auth/v1/my-orders', 'API\OrderApiController@myOrders');
     Route::post('/auth/v1/orders', 'API\OrderApiController@store');
 });
 

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\OrderRequest;
+use App\Http\Resources\OrderResource;
+use App\Services\OrderService;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -15,7 +18,7 @@ class OrderController extends Controller
     }
 
 
-    public function store(StoreOrder $request)
+    public function store(OrderRequest $request)
     {
         $order = $this->orderService->createNewOrder($request->all());
 
@@ -29,5 +32,12 @@ class OrderController extends Controller
         }
 
         return new OrderResource($order);
+    }
+
+    public function myOrders()
+    {
+        $orders = $this->orderService->ordersByClient();
+
+        return OrderResource::collection($orders);
     }
 }
